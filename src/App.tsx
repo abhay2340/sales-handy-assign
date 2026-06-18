@@ -7,10 +7,14 @@ import { ErrorBoundary } from "@/shared/components/ErrorBoundary";
 import "./App.css";
 
 function App() {
+  const basename = window.location.hostname.endsWith(".github.io")
+    ? "/sales-handy-assign"
+    : "/";
+
   return (
     <StoreProvider>
       <QueryProvider>
-        <BrowserRouter>
+        <BrowserRouter basename={basename}>
           <SnackbarProvider>
             <ErrorBoundary>
               <AppRouter />
