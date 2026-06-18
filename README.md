@@ -132,3 +132,44 @@ The **Recently Viewed** product section uses a specialized hook (`useRecentlyVie
 4. **E2E & Component Tests**: Set up a comprehensive unit/integration test suite using Vitest + React Testing Library for custom hooks and Redux reducers, combined with Playwright for drawers and filters.
 5. **Advanced Analytics Dashboard**: Add active cart funnel tracking and heat-maps of clicked categories directly inside the admin panel dashboard.
 6. **SSR Optimization**: Transition to Next.js App Router to perform server-side rendering on product details pages to optimize SEO meta tag delivery.
+
+---
+
+## 🌐 Deployment
+
+Since this is a static SPA (Single Page Application), it can be deployed for free on several platforms.
+
+### Option 1: Vercel (Recommended)
+1. Sign in to [Vercel](https://vercel.com/) using your GitHub account.
+2. Click **Add New** > **Project**.
+3. Import the `sales-handy-assign` repository.
+4. Vercel will automatically detect **Vite** as the framework.
+5. Keep default settings (Build command: `tsc -b && vite build`, Output directory: `dist`).
+6. Click **Deploy**. Vercel will configure CD (Continuous Delivery) so any future commits pushed to `main` will automatically trigger a new deployment.
+> **Note**: We have included `vercel.json` in the root of the project to ensure that client-side SPA routing (React Router) works seamlessly when pages are refreshed.
+
+### Option 2: Netlify
+1. Log in to [Netlify](https://www.netlify.com/).
+2. Select **Add new site** > **Import an existing project**.
+3. Connect your GitHub account and choose the `sales-handy-assign` repository.
+4. Configure site settings (Build command: `npm run build`, Publish directory: `dist`).
+5. Click **Deploy Site**.
+> **Note**: We have included `netlify.toml` in the root of the project to ensure client-side route fallback handles page refreshes.
+
+### Option 3: GitHub Pages
+To deploy to GitHub Pages:
+1. Install the GitHub Pages deployment helper:
+   ```bash
+   npm install --save-dev gh-pages
+   ```
+2. Open `package.json` and add a `homepage` property:
+   ```json
+   "homepage": "https://<your-username>.github.io/sales-handy-assign",
+   ```
+3. Add deploy scripts to your `package.json` scripts block:
+   ```json
+   "predeploy": "npm run build",
+   "deploy": "gh-pages -d dist"
+   ```
+4. Run `npm run deploy`.
+
